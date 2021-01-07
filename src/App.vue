@@ -1,18 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <FootPrint
+      co2_category="konsum"
+      color="green"
+      :img_x="50"
+      :img_y="50"
+      :img_width="100"
+      :img_heigth="50"
+    />
+    <FootPrint
+      co2_category="essen"
+      color="black"
+      :img_x="50"
+      :img_y="100"
+      :img_width="100"
+      :img_heigth="50"
+    />
+    <FootPrint
+      co2_category="auto"
+      color="red"
+      :img_x="50"
+      :img_y="150"
+      :img_width="100"
+      :img_heigth="50"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FootPrint from "./components/footprint.vue"
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
+    FootPrint,
+  },
 }
 </script>
 
