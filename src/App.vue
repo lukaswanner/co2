@@ -8,7 +8,7 @@
       :img_width="100"
       :img_heigth="50"
     />
-    <FootPrint
+    <!-- <FootPrint
       co2_category="essen"
       color="black"
       :img_x="50"
@@ -23,17 +23,27 @@
       :img_y="150"
       :img_width="100"
       :img_heigth="50"
+    /> -->
+    <svg-footprint
+      co2_category="konsum"
+      color="green"
+      :img_x="50"
+      :img_y="-100"
+      :img_width="100"
+      :img_heigth="100"
     />
   </div>
 </template>
 
 <script>
 import FootPrint from "./components/footprint.vue"
+import svgFootprint from "./components/svgfootprint.vue"
 
 export default {
   name: "App",
   components: {
     FootPrint,
+    svgFootprint,
   },
 }
 </script>
