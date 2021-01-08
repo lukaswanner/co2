@@ -1,49 +1,54 @@
 <template>
   <div id="app">
-    <FootPrint
-      co2_category="konsum"
+    <svgfoot
+      co2_category="Konsum"
       color="green"
-      :img_x="50"
-      :img_y="50"
-      :img_width="100"
-      :img_heigth="50"
+      :svg_heigth="100"
+      :img_y="0"
     />
-    <!-- <FootPrint
-      co2_category="essen"
-      color="black"
-      :img_x="50"
-      :img_y="100"
-      :img_width="100"
-      :img_heigth="50"
-    />
-    <FootPrint
-      co2_category="auto"
+    <svgfoot
+      co2_category="Auto"
       color="red"
-      :img_x="50"
-      :img_y="150"
-      :img_width="100"
-      :img_heigth="50"
-    /> -->
-    <svg-footprint
-      co2_category="konsum"
-      color="green"
-      :img_x="50"
-      :img_y="-100"
-      :img_width="100"
-      :img_heigth="100"
+      :svg_heigth="100"
+      :img_y="100"
+    />
+    <svgfoot
+      co2_category="Strom"
+      color="blue"
+      :svg_heigth="100"
+      :img_y="200"
+    />
+    <svgfoot
+      co2_category="Strom"
+      color="pink"
+      :svg_heigth="700"
+      :img_y="300"
+      v-on:test="childHide"
+      v-if="childVisible"
     />
   </div>
 </template>
 
-<script>
-import FootPrint from "./components/footprint.vue"
-import svgFootprint from "./components/svgfootprint.vue"
 
+
+<script>
+
+//todo nach emit sollen die anderen invis sein und size von dem geclicketen soll dann 100% sein
+import svgfoot from "./components/svgfootprint.vue"
 export default {
   name: "App",
   components: {
-    FootPrint,
-    svgFootprint,
+    svgfoot,
+  },
+  data: function() {
+    return {
+      childVisible: true
+    }
+  },
+   methods: {
+    childHide () {
+      console.log("test")
+    },
   },
 }
 </script>
@@ -57,4 +62,5 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 </style>
