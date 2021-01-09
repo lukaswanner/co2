@@ -1,31 +1,6 @@
 <template>
   <div id="app">
-    <svgfoot
-      co2_category="Konsum"
-      color="green"
-      :svg_heigth="100"
-      :img_y="0"
-    />
-    <svgfoot
-      co2_category="Auto"
-      color="red"
-      :svg_heigth="100"
-      :img_y="100"
-    />
-    <svgfoot
-      co2_category="Strom"
-      color="blue"
-      :svg_heigth="100"
-      :img_y="200"
-    />
-    <svgfoot
-      co2_category="Strom"
-      color="pink"
-      :svg_heigth="700"
-      :img_y="300"
-      v-on:test="childHide"
-      v-if="childVisible"
-    />
+    <foot/>
   </div>
 </template>
 
@@ -34,11 +9,11 @@
 <script>
 
 //todo nach emit sollen die anderen invis sein und size von dem geclicketen soll dann 100% sein
-import svgfoot from "./components/svgfootprint.vue"
+import foot from "./components/co2foot.vue"
 export default {
   name: "App",
   components: {
-    svgfoot,
+    foot,
   },
   data: function() {
     return {
