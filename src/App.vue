@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-    <foot/>
+    <foot />
   </div>
 </template>
 
-
-
 <script>
-
 //todo nach emit sollen die anderen invis sein und size von dem geclicketen soll dann 100% sein
 import foot from "./components/co2foot.vue"
 export default {
@@ -17,11 +14,11 @@ export default {
   },
   data: function() {
     return {
-      childVisible: true
+      childVisible: true,
     }
   },
-   methods: {
-    childHide () {
+  methods: {
+    childHide() {
       console.log("test")
     },
   },
@@ -34,8 +31,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+}
+
+* {
+  margin: 0px;
 }
 
 </style>
