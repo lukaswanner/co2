@@ -13,6 +13,8 @@
 import navbar from "./components/navbar.vue"
 import Landing from "./components/landing_section.vue"
 
+//allgemeines js
+
 export default {
   name: "App",
   components: {
@@ -80,6 +82,6 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background: #6649b8;
+  background:  #b8283f;
 }
 </style>

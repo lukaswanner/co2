@@ -62,10 +62,14 @@ a {
   text-decoration-line: underline;
 }
 
+.menuItems a:last-child{
+      padding-right: 20px;
+  }
+
 @media only screen and (max-width: 720px) {
   a {
-    font-size: 15px;
-    padding: 10px;
+    font-size: 18px;
+    padding: 8px;
   }
 }
 </style>
