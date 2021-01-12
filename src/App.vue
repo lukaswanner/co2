@@ -1,12 +1,8 @@
 <template>
   <div id="app-container">
     <div class="navbar"><navbar /></div>
-    <div class="illustration"></div>
-    <div class="main"><img src="./assets/Ecology_Isometric.svg" /></div>
-    <div class="slogan">
-      <p>Hi,</p>
-      <h1>Let's save the planet <span>together</span></h1>
-    </div>
+    <div class="landing"><Landing /></div>
+    <div class="landing2"><Landing /></div>
   </div>
 </template>
 
@@ -15,12 +11,15 @@
 // import foot from "./components/co2foot.vue"
 // import BarChart from "./components/barchart.vue"
 import navbar from "./components/navbar.vue"
+import Landing from "./components/landing_section.vue"
+
 export default {
   name: "App",
   components: {
     // foot,
     // BarChart,
     navbar,
+    Landing,
   },
   data: function() {
     return {
@@ -37,8 +36,8 @@ export default {
 
 <style>
 body {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   overflow-x: hidden;
 }
 
@@ -47,95 +46,40 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: grid;
-  height: 100%;
-  max-width: 100%;
+  height: 100vh;
+  width: 100vw;
   background-color: #eee8a9;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 2.5fr 6fr;
 }
 
 .navbar {
   grid-column-start: 1;
   grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
   z-index: 1;
+  height: 10vh;
 }
 
-.slogan {
+.landing {
   grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  padding: 10px;
-}
-
-.slogan p {
-  text-decoration: none;
-  color: #525ca3;
-  font-size: 2em;
-  font-weight: 600;
-  transition: all 0.5s ease-in-out;
-  text-transform: uppercase;
-}
-
-.slogan h1 {
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  color: #525ca3;
-  font-size: 4em;
-  font-weight: 600;
-  transition: all 0.5s ease-in-out;
-  text-transform: uppercase;
-}
-
-.slogan span {
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  color: #b8283f;
-  font-weight: 600;
-  transition: all 0.5s ease-in-out;
-  text-transform: uppercase;
-}
-
-.main {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 4;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.illustration {
-  grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 4;
-  background-image: url("./assets/save_the_planet.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: 50%;
+  height: 90vh;
 }
 
-@media only screen and (max-width: 600px) {
-  #app-container {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));
-  }
-  .slogan {
-    grid-column: 1 / 2;
-    grid-row: 2/4;
-  }
-  .main {
-    grid-column: 1 / 2;
-    grid-row: 6/9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+.landing2 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  height: 100vh;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #6649b8;
 }
 </style>
