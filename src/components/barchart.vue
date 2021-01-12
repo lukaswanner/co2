@@ -1,42 +1,44 @@
 <template>
-  <svg class="barchart" :width="width" :height="height">
-    <g>
-      <g class="bars" fill="none" transform="translate(100, 0)">
-        <rect
-          v-for="(bar, index) in data"
-          fill="pink"
-          :key="index"
-          :height="barHeight + '%'"
-          :width="barlen(index) + '%'"
-          :x="x"
-          :y="y(index) + '%'"
-        ></rect>
+  <div class="wrapper">
+    <svg class="barchart" :width="width" :height="height">
+      <g>
+        <g class="bars" fill="none" transform="translate(100, 0)">
+          <rect
+            v-for="(bar, index) in data"
+            fill="pink"
+            :key="index"
+            :height="barHeight + '%'"
+            :width="barlen(index) + '%'"
+            :x="x"
+            :y="y(index) + '%'"
+          ></rect>
+        </g>
+        <g class="y-grid" transform="translate(100, 0)">
+          <line x1="0" x2="0" y1="0" :y2="height"></line>
+        </g>
+        <g class="y-grid-category" transform="translate(0, 0)">
+          <text
+            v-for="(bar, index) in data"
+            :key="index"
+            :x="0"
+            :y="y(index) + barHeight / 2 + '%'"
+          >
+            {{ bar[1] }}
+          </text>
+        </g>
+        <g class="y-grid-percent" transform="translate(100, 0)">
+          <text
+            v-for="(bar, index) in data"
+            :key="index"
+            :x="barlen(index) - 2 + '%'"
+            :y="y(index) + barHeight / 2 + '%'"
+          >
+            {{ bar[0] }}%
+          </text>
+        </g>
       </g>
-      <g class="y-grid" transform="translate(100, 0)">
-        <line x1="0" x2="0" y1="0" :y2="height"></line>
-      </g>
-      <g class="y-grid-category" transform="translate(0, 0)">
-        <text
-          v-for="(bar, index) in data"
-          :key="index"
-          :x="0"
-          :y="y(index) + barHeight / 2 + '%'"
-        >
-          {{ bar[1] }}
-        </text>
-      </g>
-      <g class="y-grid-percent" transform="translate(100, 0)">
-        <text
-          v-for="(bar, index) in data"
-          :key="index"
-          :x="barlen(index) - 2 + '%'"
-          :y="y(index) + barHeight / 2 + '%'"
-        >
-          {{ bar[0] }}%
-        </text>
-      </g>
-    </g>
-  </svg>
+    </svg>
+  </div>
 </template>
 
 <script>
@@ -86,6 +88,10 @@ export default {
 </script>
 
 <style>
+.wrapper{
+  width: 100%;
+  height: 100%;
+}
 .x-grid,
 .y-grid {
   stroke: black;
