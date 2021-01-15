@@ -1,8 +1,8 @@
 <template>
   <div id="app-container">
-    <div class="navbar"><navbar /></div>
-    <div class="landing"><Landing /></div>
-    <div class="landing2"><Landing /></div>
+    <div id="navbar"><navbar /></div>
+    <div id="landing"> <Landing_Page/></div>
+    <div id="landing2"><Questions/></div>
   </div>
 </template>
 
@@ -11,7 +11,8 @@
 // import foot from "./components/co2foot.vue"
 // import BarChart from "./components/barchart.vue"
 import navbar from "./components/navbar.vue"
-import Landing from "./components/landing_section.vue"
+import Landing_Page from "./components/landing_page.vue"
+import Questions from "./components/question_page.vue"
 
 //allgemeines js
 
@@ -20,8 +21,9 @@ export default {
   components: {
     // foot,
     // BarChart,
+    Landing_Page,
     navbar,
-    Landing,
+    Questions,
   },
   data: function() {
     return {
@@ -41,7 +43,7 @@ body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  
+  background-color:#231F20
 }
 
 #app-container {
@@ -51,24 +53,27 @@ body {
   display: grid;
   height: 100vh;
   width: 100vw;
-  background-color: #eee8a9;
+  background-color: rgb(254, 254, 254);
   grid-template-columns: 1fr 1fr;
 }
 
-.navbar {
+#navbar {
   grid-column-start: 1;
   grid-column-end: 3;
+  grid-row-start:1 ;
   z-index: 1;
   height: 10vh;
 }
 
-.landing {
+#landing {
   grid-column-start: 1;
   grid-column-end: 3;
-  height: 90vh;
+  grid-row-start: 1;
+  grid-row-end: auto;
+  height: 100vh;
 }
 
-.landing2 {
+#landing2 {
   grid-column-start: 1;
   grid-column-end: 3;
   height: 100vh;

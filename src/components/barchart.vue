@@ -5,7 +5,7 @@
         <g class="bars" fill="none" transform="translate(100, 0)">
           <rect
             v-for="(bar, index) in data"
-            fill="pink"
+            :fill="bar[2]"
             :key="index"
             :height="barHeight + '%'"
             :width="barlen(index) + '%'"
@@ -22,6 +22,7 @@
             :key="index"
             :x="0"
             :y="y(index) + barHeight / 2 + '%'"
+            fill="#EBEBEB"
           >
             {{ bar[1] }}
           </text>
@@ -32,6 +33,7 @@
             :key="index"
             :x="barlen(index) - 2 + '%'"
             :y="y(index) + barHeight / 2 + '%'"
+            fill="#EBEBEB"
           >
             {{ bar[0] }}%
           </text>
@@ -49,6 +51,7 @@ export default {
     return {
       height: "100%",
       width: "100%",
+      color: "brown",
     }
   },
   mounted() {},
@@ -61,9 +64,10 @@ export default {
           parseInt(store.state.co2list[index].percent) -
           parseInt(store.state.co2list[index - 1].percent)
         const category = store.state.co2list[index].category
-        list.push([percent, category])
+        const color = store.state.co2list[index].color
+        list.push([percent, category, color])
       }
-      list.sort()
+      list.sort().reverse()
       return list
     },
     x() {
@@ -92,19 +96,22 @@ export default {
   width: 100%;
   height: 100%;
 }
-.x-grid,
-.y-grid {
-  stroke: black;
-  stroke-width: 1;
+
+text {
+  font-family: "Nunito", sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  dominant-baseline: middle;
 }
 .y-grid-percent {
-  font-size: 13px;
   text-anchor: end;
-  dominant-baseline: middle;
 }
 .y-grid-category {
-  font-size: 13px;
   text-anchor: start;
-  dominant-baseline: middle;
+}
+
+line{
+  stroke-width: 5px;
+  stroke: #EBEBEB;
 }
 </style>
