@@ -8,7 +8,6 @@
 
 <script>
 //todo nach emit sollen die anderen invis sein und size von dem geclicketen soll dann 100% sein
-// import foot from "./components/co2foot.vue"
 // import BarChart from "./components/barchart.vue"
 import navbar from "./components/navbar.vue"
 import Landing_Page from "./components/landing_page.vue"
@@ -19,7 +18,6 @@ import Questions from "./components/question_page.vue"
 export default {
   name: "App",
   components: {
-    // foot,
     // BarChart,
     Landing_Page,
     navbar,

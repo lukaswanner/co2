@@ -3,7 +3,7 @@
     <h1 class="save_earth">save earth</h1>
     <div class="question_card">
       <img class="car" :src="this.src" alt="" />
-      <h1>{{this.question}}</h1>
+      <h1>{{ this.question }}</h1>
       <div class="call_to_action_q1">
         <button class="button">&#62; 100km</button>
       </div>
@@ -20,7 +20,7 @@
     <i
       id="arrow"
       class="fas fa-angle-double-right"
-      @click="shiftCards($event)"
+      @click="shiftCards()"
     ></i>
   </div>
 </template>
@@ -36,7 +36,7 @@ export default {
   data: function() {
     return {
       img_src: require("@/assets/car.svg"),
-      question:"How far have you traveled by car?"
+      question: "How far have you traveled by car?",
     }
   },
   mounted() {
@@ -48,8 +48,8 @@ export default {
     function callbackFunc(entries) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.transition = "4s ease-in-out"
-          entry.target.style.opacity = 0.1
+          entry.target.style.transition = "3s ease-in-out"
+          entry.target.style.opacity = 0.08
         } else {
           entry.target.style.transition = "1s"
           entry.target.style.opacity = 1
@@ -61,14 +61,13 @@ export default {
     observer.observe(document.getElementsByClassName("save_earth")[0])
   },
   methods: {
-    shiftCards: function(event) {
-      console.log(event)
+    shiftCards: function() {
       let card = document.getElementsByClassName("question_card")[0]
-      card.addEventListener("transitionend", this.testing)
+      card.addEventListener("transitionend", this.shiftBack)
       card.style.transition = "2s ease-in-out"
       card.style.opacity = 0
     },
-    testing: function() {
+    shiftBack: function() {
       this.img_src = require("@/assets/penis.svg")
       this.question = "Do you like dick?"
       let card = document.getElementsByClassName("question_card")[0]
@@ -76,10 +75,10 @@ export default {
     },
   },
   computed: {
-    src(){
+    src() {
       return this.img_src
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -92,7 +91,6 @@ export default {
   margin-top: 10%;
 
   display: grid;
-  position: relative;
   height: 100%;
   background-color: #231f20;
   grid-template-columns: repeat(12, 1fr);
@@ -100,15 +98,17 @@ export default {
 }
 
 .save_earth {
-  position: absolute;
+  grid-column-start: 2;
+  grid-column-end: 13;
+
+  grid-row-start: 1;
+  grid-row-end: 3;
   width: 100%;
   margin: 0;
-  top: -8%;
-  left: 25%;
 
   color: #ebebeb;
   font-size: 14em;
-  word-spacing: 0.8em;
+  word-spacing: 0.2em;
   opacity: 1;
 
   transition: 4s ease-in-out;
@@ -118,8 +118,8 @@ export default {
   grid-column-start: 2;
   grid-column-end: 7;
 
-  grid-row-start: 3;
-  grid-row-end: 10;
+  grid-row-start: 4;
+  grid-row-end: 11;
 
   height: 100%;
   width: 100%;
@@ -136,8 +136,8 @@ export default {
   grid-column-start: 8;
   grid-column-end: 12;
 
-  grid-row-start: 3;
-  grid-row-end: 10;
+  grid-row-start: 4;
+  grid-row-end: 11;
 
   height: 100%;
   width: 100%;
