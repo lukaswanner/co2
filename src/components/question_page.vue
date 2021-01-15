@@ -68,8 +68,8 @@ export default {
       card.style.opacity = 0
     },
     shiftBack: function() {
-      this.img_src = require("@/assets/penis.svg")
-      this.question = "Do you like dick?"
+      this.img_src = require("@/assets/logo.svg")
+      this.question = "Do you like me?"
       let card = document.getElementsByClassName("question_card")[0]
       card.style.opacity = 1
     },
