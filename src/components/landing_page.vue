@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: "Landing_Page",
+  name: "Landing",
   data: function() {
     return {
       childVisible: true,
@@ -32,7 +32,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
 
   display: grid;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
 
@@ -79,7 +80,7 @@ export default {
 
 .call_to_action {
   grid-column-start: 5;
-  grid-column-end: 8;
+  grid-column-end: 9;
   grid-row-start: 9;
   grid-row-end: 10;
   display: flex;
