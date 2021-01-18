@@ -6,24 +6,38 @@
       <h1>{{ this.question }}</h1>
       <div class="questions">
         <div class="call_to_action_q1">
-          <button class="button" @click="toggle($event)">&#62; 100km</button>
+          <button class="button" @click="toggle($event)">{{ a1 }}</button>
         </div>
         <div class="call_to_action_q2">
-          <button class="button" @click="toggle($event)">&#62; 10.000km</button>
+          <button class="button" @click="toggle($event)">{{ a2 }}</button>
         </div>
         <div class="call_to_action_q3">
-          <button class="button" @click="toggle($event)">&#60; 10.000km</button>
+          <button class="button" @click="toggle($event)">{{ a3 }}</button>
         </div>
       </div>
     </div>
     <div class="graph_card">
       <BarChart class="graph" />
     </div>
-    <i id="arrow" class="fas fa-angle-double-right" @click="shiftCards()"></i>
+    <div class="arrows">
+      <i
+        id="backarrow"
+        class="fas fa-angle-double-right"
+        @click="shiftCards(false)"
+      ></i>
+      <i
+        id="arrow"
+        class="fas fa-angle-double-right"
+        @click="shiftCards(true)"
+      ></i>
+    </div>
   </div>
 </template>
 
 <script>
+//todo wenn gedrückt dann wird er wert ausm json an die co2 liste hinzugefügt
+//hier gibt es einen gesammt wert und einen wert pro category
+//somit kann dann pro category jeweils der prozentsatz berechnet werden
 import BarChart from "./barchart.vue"
 
 export default {
@@ -34,10 +48,11 @@ export default {
   data: function() {
     return {
       img_src: require("@/assets/car.svg"),
-      question: "How far have you traveled by car?",
+      index: 0,
     }
   },
   mounted() {
+    console.log(require("@/assets/questions/questions.json").questions)
     let options = {
       root: null,
       rootMargin: "0px",
@@ -59,21 +74,47 @@ export default {
     observer.observe(document.getElementsByClassName("save_earth")[0])
   },
   methods: {
-    shiftCards: function() {
+    shiftCards: function(bool) {
       let card = document.getElementsByClassName("question_card")[0]
-      card.addEventListener("transitionend", this.shiftBack)
-      card.style.transition = "2s ease-in-out"
+      if (bool) {
+        card.addEventListener("transitionend", this.shiftForwards)
+      } else {
+        card.addEventListener("transitionend", this.shiftBackwards)
+      }
+      card.style.transition = "0.7s ease-in-out"
       card.style.opacity = 0
     },
-    shiftBack: function() {
-      this.img_src = require("@/assets/car.svg")
-      this.question = "This is question 2"
+    shiftForwards: function() {
+      document
+        .getElementsByClassName("question_card")[0]
+        .removeEventListener("transitionend", this.shiftForwards)
       let buttons = document.getElementsByClassName("questions")[0].children
       buttons.forEach((button) => {
         button.firstChild.classList.remove("active")
       })
-      let card = document.getElementsByClassName("question_card")[0]
-      card.style.opacity = 1
+      document.getElementsByClassName("question_card")[0].style.opacity = 1
+      // prettier-ignore
+      if (this.index + 1 <require("@/assets/questions/questions.json").questions.length) {
+        this.index += 1
+      }else{
+          this.index = 0
+      }
+    },
+    shiftBackwards: function() {
+      document
+        .getElementsByClassName("question_card")[0]
+        .removeEventListener("transitionend", this.shiftBackwards)
+      let buttons = document.getElementsByClassName("questions")[0].children
+      buttons.forEach((button) => {
+        button.firstChild.classList.remove("active")
+      })
+      document.getElementsByClassName("question_card")[0].style.opacity = 1
+      // prettier-ignore
+      if (this.index - 1  >= 0) {
+        this.index -= 1
+      }else{
+          this.index = 0
+      }
     },
     toggle: function(event) {
       let buttons = event.currentTarget.parentElement.parentElement.children
@@ -86,6 +127,22 @@ export default {
   computed: {
     src() {
       return this.img_src
+    },
+    question() {
+      return require("@/assets/questions/questions.json").questions[this.index]
+        .Q
+    },
+    a1() {
+      return require("@/assets/questions/questions.json").questions[this.index]
+        .A1[0]
+    },
+    a2() {
+      return require("@/assets/questions/questions.json").questions[this.index]
+        .A2[0]
+    },
+    a3() {
+      return require("@/assets/questions/questions.json").questions[this.index]
+        .A3[0]
     },
   },
 }
@@ -118,7 +175,7 @@ export default {
   word-spacing: 0.2em;
   opacity: 1;
   text-align: center;
-  transition: 4s ease-in-out;
+  transition: 5s ease-in-out;
 }
 
 .question_card {
@@ -173,6 +230,7 @@ export default {
   justify-self: center;
   align-self: center;
   font-size: 3em;
+  text-align: center;
   color: #ebebeb;
 }
 
@@ -192,10 +250,6 @@ export default {
   border-radius: 15px;
 }
 
-.button:hover {
-  background-color: #1a9414;
-}
-
 .active {
   background-color: #1a9414;
 }
@@ -208,22 +262,44 @@ export default {
   grid-row-end: 12;
 }
 
-#arrow {
-  font-size: 3.5em;
-  color: #b8283f;
-  grid-column-start: 6;
-  grid-column-end: 7;
+.arrows {
+  grid-column-start: 3;
+  grid-column-end: 6;
 
   grid-row: auto;
-  transition: 0.5s ease-in-out;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+#arrow {
+  font-size: 3.5em;
+  color: #1a9414;
+
   justify-self: center;
   align-self: center;
 
   cursor: pointer;
+  margin-bottom: 5%;
 }
 
-#arrow:hover {
-  color: #1a9414;
+#backarrow {
+  font-size: 3.5em;
+  color: #b8283f;
+
+  justify-self: center;
+  align-self: center;
+  transform: rotate(180deg);
+  cursor: pointer;
+  margin-bottom: 5%;
+}
+
+#arrow:active {
+  transform: scale(0.9, 0.9);
+}
+
+#backarrow:active {
+  transform: rotate(180deg) scale(0.9, 0.9);
 }
 
 @media only screen and (max-width: 1300px) {
@@ -233,8 +309,8 @@ export default {
     grid-template-areas:
       "save_earth"
       "questions"
-      "graph"
-      "arrow";
+      "arrow"
+      "graph";
   }
 
   .save_earth {
@@ -249,8 +325,13 @@ export default {
     grid-area: graph;
   }
 
-  #arrow {
+  .arrows {
     grid-area: arrow;
+    justify-content: center;
+  }
+
+  .arrows > * {
+    padding-left: 5%;
   }
 }
 

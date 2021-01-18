@@ -1,0 +1,52 @@
+{
+  "questions": [
+    {
+      "Q": "What's your usual diet?",
+      "A1": ["Meat",100],
+      "A2": ["Vegetarian",200],
+      "A3": ["Vegan",300]
+    },
+    {
+      "Q": "How often do you fly short haul?",
+      "A1": ["0",100],
+      "A2": ["1-5",200],
+      "A3": ["> 5",300]
+    },
+    {
+      "Q": "How often do you fly medium haul?",
+      "A1": ["0",100],
+      "A2": ["1-5",200],
+      "A3": ["> 5",300]
+    },
+    {
+      "Q": "How often do you fly long haul?",
+      "A1": ["0",100],
+      "A2": ["1-5",200],
+      "A3": ["> 5",300]
+    },
+    {
+      "Q": "How do you get to work?",
+      "A1": ["Foot",100],
+      "A2": ["Car",200],
+      "A3": ["P Transport",300]
+    },
+    {
+      "Q": "How often do you drive longer distances?",
+      "A1": ["0",100],
+      "A2": ["1-5",200],
+      "A3": ["> 5",300]
+    },
+    {
+      "Q": "How often do you drive longer distances with public transport?",
+      "A1": ["0",100],
+      "A2": ["1-5",200],
+      "A3": ["> 5",300]
+    },
+    {
+      "Q": "How often do you buy new stuff?",
+      "A1": ["Never",100],
+      "A2": ["Monthly",200],
+      "A3": ["Yearly",300]
+    }
+  ]
+}
