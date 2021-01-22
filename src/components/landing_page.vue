@@ -139,6 +139,17 @@ export default {
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
+
+     background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(35, 31, 32, 0.5),
+      rgba(35, 31, 32, 0.5),
+      rgba(35, 31, 32, 0.5),
+      rgba(35, 31, 32, 1)
+    ),
+    url("../assets/background.jpg");
+  background-size: cover;
   }
 
   .slogan{
