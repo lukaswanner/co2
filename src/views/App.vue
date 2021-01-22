@@ -53,7 +53,6 @@ body {
   flex-flow: column;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(254, 254, 254);
 }
 
 #navbar {

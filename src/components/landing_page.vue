@@ -74,7 +74,7 @@ export default {
 }
 
 .information p {
-  padding: 0;
+  padding: 10px;
   margin: 0;
   text-decoration: none;
   color: #edecda;
