@@ -5,16 +5,17 @@
         <g class="bars" fill="none" transform="translate(100, 0)">
           <rect
             v-for="(bar, index) in data"
-            :fill="bar[2]"
+            :fill="bar[3]"
             :key="index"
             :height="barHeight + '%'"
             :width="barlen(index) + '%'"
             :x="x"
             :y="y(index) + '%'"
+            class="bar"
           ></rect>
         </g>
         <g class="y-grid" transform="translate(100, 0)">
-          <line x1="0" x2="0" y1="0" :y2="height"></line>
+          <line x1="0" x2="0" y1="5%" y2="90%"></line>
         </g>
         <g class="y-grid-category" transform="translate(0, 0)">
           <text
@@ -24,18 +25,18 @@
             :y="y(index) + barHeight / 2 + '%'"
             fill="#EBEBEB"
           >
-            {{ bar[1] }}
+            {{ bar[2] }}
           </text>
         </g>
-        <g class="y-grid-percent" transform="translate(100, 0)">
+        <g class="y-grid-percent" transform="translate(150, 0)">
           <text
             v-for="(bar, index) in data"
             :key="index"
-            :x="barlen(index) - 2 + '%'"
+            :x="'0%'"
             :y="y(index) + barHeight / 2 + '%'"
             fill="#EBEBEB"
           >
-            {{ bar[0] }}%
+            {{ bar[0] }}t
           </text>
         </g>
       </g>
@@ -50,8 +51,7 @@ export default {
   data() {
     return {
       height: "100%",
-      width: "100%",
-      color: "brown",
+      width: "90%",
     }
   },
   mounted() {},
@@ -59,15 +59,19 @@ export default {
   computed: {
     data() {
       const list = []
-      for (let index = 1; index < store.state.co2list.length - 1; index += 2) {
-        const percent =
-          parseInt(store.state.co2list[index].percent) -
-          parseInt(store.state.co2list[index - 1].percent)
-        const category = store.state.co2list[index].category
-        const color = store.state.co2list[index].color
-        list.push([percent, category, color])
+      for (let index = 0; index < store.state.co2list_bar.length; index += 1) {
+        const value = parseInt(store.state.co2list_bar[index].value)
+        const category = store.state.co2list_bar[index].category
+        const color = store.state.co2list_bar[index].color
+        list.push([value, "0", category, color])
       }
-      list.sort().reverse()
+      list.sort(function(a, b) {
+        return b[0] - a[0]
+      })
+      for (let index = 0; index < list.length; index++) {
+        let element = list[index]
+        element[1] = parseInt((element[0] / list[0][0]) * 100)
+      }
       return list
     },
     x() {
@@ -85,16 +89,18 @@ export default {
       return index * (this.barHeight + this.barOffset) + this.barHeight
     },
     barlen(index) {
-      return parseInt(this.width) * (this.data[index][0] / 100)
+      return parseInt(this.width) * (this.data[index][1] / 100)
     },
   },
 }
 </script>
 
 <style>
-.wrapper{
-  width: 100%;
-  height: 100%;
+.bar {
+  transition:4s ease, fill 0.2s;
+}
+.wrapper {
+  min-height: 30vh;
 }
 
 text {
@@ -110,8 +116,8 @@ text {
   text-anchor: start;
 }
 
-line{
+line {
   stroke-width: 5px;
-  stroke: #EBEBEB;
+  stroke: #ebebeb;
 }
 </style>

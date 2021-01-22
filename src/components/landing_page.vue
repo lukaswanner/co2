@@ -1,12 +1,19 @@
 <template>
   <div id="section-container">
+    <div class="text-section"></div>
     <div class="slogan">
-      <p>Hi,</p>
-      <h1>Let's save the <span>planet</span></h1>
+      <h1>Let's save the <span>planet</span> together</h1>
+    </div>
+    <div class="information">
+      <p>
+        Calculate your <span>carbon</span> footprint and learn how to reduce it
+        without much effort
+      </p>
     </div>
     <div class="call_to_action">
       <button class="button">save the planet</button>
     </div>
+    <div class="background"></div>
   </div>
 </template>
 
@@ -24,8 +31,8 @@ export default {
 <style scoped>
 #section-container {
   font-family: "Nunito", sans-serif;
-  text-shadow: 1px 1px 1px black, 1px -1px 1px black, -1px 1px 1px black,
-    -1px -1px 1px black;
+  text-shadow: .8px .8px .8px black, .8px -.8px .8px black, -.8px .8px .8px black,
+    -.8px -.8px .8px black;
   font-weight: 600;
 
   -webkit-font-smoothing: antialiased;
@@ -36,29 +43,12 @@ export default {
   width: 100vw;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(12, 1fr);
-
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ),
-    url("../assets/background.jpg");
-  background-size: cover;
 }
 
 .slogan {
-  grid-column-start: 4;
-  grid-column-end: 11;
-  grid-row-start: 6;
-  grid-row-end: 7;
-}
-
-.slogan p {
-  text-decoration: none;
-  color: #edecda;
-  font-size: 2em;
-  transition: all 0.5s ease-in-out;
-  text-transform: uppercase;
+  grid-column: 2/5;
+  grid-row: 5/7;
+  line-height: 3.5em;
 }
 
 .slogan h1 {
@@ -66,7 +56,7 @@ export default {
   margin: 0;
   text-decoration: none;
   color: #edecda;
-  font-size: 6em;
+  font-size: 4em;
   transition: all 0.5s;
 }
 
@@ -78,19 +68,35 @@ export default {
   transition: all 0.5s;
 }
 
+.information {
+  grid-column: 2/5;
+  grid-row: 9/10;
+}
+
+.information p {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: #edecda;
+  font-size: 1.4em;
+  transition: all 0.5s;
+}
+
+.information span {
+  color: #b8283f;
+}
+
 .call_to_action {
-  grid-column-start: 5;
-  grid-column-end: 9;
-  grid-row-start: 9;
-  grid-row-end: 10;
+  grid-column: 2/5;
+  grid-row: 11/12;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
 .button {
-  padding: 15px 25px;
-  font-size: 24px;
+  padding: 10px 20px;
+  font-size: 1.2em;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -98,6 +104,52 @@ export default {
   color: #edecda;
   background-color: #1a9414;
   border: none;
-  border-radius: 15px;
+  border-radius: 20px;
+}
+
+.text-section {
+  grid-column: 1/6;
+  grid-row: 1/13;
+
+  background-color: #231f20;
+}
+
+.background {
+  grid-column: 6/13;
+  grid-row: 1/13;
+
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.3),
+      rgba(35, 31, 32, 0.5),
+      rgba(35, 31, 32, 0.5),
+      rgba(35, 31, 32, 0.5),
+      rgba(35, 31, 32, 1)
+    ),
+    url("../assets/background.jpg");
+  background-size: cover;
+}
+
+@media only screen and (max-width: 1175px) {
+  #section-container {
+    display: flex;
+    flex-flow: column;
+
+    flex-basis: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+  }
+
+  .slogan{
+    margin-top:20%;
+  }
+
+  .text-section {
+    display: none;
+  }
+  .background {
+    display: none;
+  }
 }
 </style>

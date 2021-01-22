@@ -94,6 +94,40 @@ const store = new Vuex.Store({
         category: "fill",
       },
     ],
+    co2list_bar:[
+      {
+        category:"2050 Goal",
+        value:1500,
+        id:"1",
+        color: "#27B320",
+      },
+      
+      {
+        category:"Your Co2",
+        value:1000,
+        id:"1",
+        color:"blue",
+      },
+
+      {
+        category:"Power",
+        value:700,
+        id:"2",
+        color:"#B39920",
+      },
+      {
+        category:"Transport",
+        value:300,
+        id:"3",
+        color:"red",
+      },
+      {
+        category:"Consumption",
+        value:500,
+        id:"4",
+        color:"red",
+      },
+    ]
   },
   mutations: {
     setCo2List(state, list) {
@@ -104,6 +138,14 @@ const store = new Vuex.Store({
       state.co2list = [...state.co2list_copy]
       state.detailed = false
     },
+    addToCategory(state,payload) {
+      let list = state.co2list_bar
+      list.forEach(item =>{
+        if (item.category === payload.category){
+          item.value += payload.value
+        }
+      })
+    }
   },
 })
 

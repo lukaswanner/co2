@@ -6,13 +6,13 @@
       <h1>{{ this.question }}</h1>
       <div class="questions">
         <div class="call_to_action_q1">
-          <button class="button" @click="toggle($event)">{{ a1 }}</button>
+          <button class="button" @click="toggle($event, 1)">{{ a1 }}</button>
         </div>
         <div class="call_to_action_q2">
-          <button class="button" @click="toggle($event)">{{ a2 }}</button>
+          <button class="button" @click="toggle($event, 2)">{{ a2 }}</button>
         </div>
         <div class="call_to_action_q3">
-          <button class="button" @click="toggle($event)">{{ a3 }}</button>
+          <button class="button" @click="toggle($event, 3)">{{ a3 }}</button>
         </div>
       </div>
     </div>
@@ -39,6 +39,7 @@
 //hier gibt es einen gesammt wert und einen wert pro category
 //somit kann dann pro category jeweils der prozentsatz berechnet werden
 import BarChart from "./barchart.vue"
+import store from "../Store/data.js"
 
 export default {
   name: "Questions",
@@ -48,11 +49,12 @@ export default {
   data: function() {
     return {
       img_src: require("@/assets/car.svg"),
+      selectedValue: 0,
+      selectedCategory: "",
       index: 0,
     }
   },
   mounted() {
-    console.log(require("@/assets/questions/questions.json").questions)
     let options = {
       root: null,
       rootMargin: "0px",
@@ -99,6 +101,9 @@ export default {
       }else{
           this.index = 0
       }
+      store.commit("addToCategory",{category: this.selectedCategory,value:this.selectedValue})
+      this.selectedValue = 0
+      this.selectedCategory = ""
     },
     shiftBackwards: function() {
       document
@@ -116,7 +121,20 @@ export default {
           this.index = 0
       }
     },
-    toggle: function(event) {
+    toggle: function(event, qindex) {
+      let data = require("@/assets/questions/questions.json").questions[this.index]
+      switch (qindex) {
+        case 1:
+          this.selectedValue = data.A1[1]
+          break
+        case 2:
+          this.selectedValue = data.A2[1]
+          break
+        case 3:
+          this.selectedValue = data.A3[1]
+          break
+      }
+      this.selectedCategory = data.Category
       let buttons = event.currentTarget.parentElement.parentElement.children
       buttons.forEach((button) => {
         button.firstChild.classList.remove("active")
@@ -194,8 +212,8 @@ export default {
 }
 
 .graph_card {
-  grid-column-start: 8;
-  grid-column-end: 12;
+  grid-column-start: 7;
+  grid-column-end: 13;
 
   grid-row: auto;
 

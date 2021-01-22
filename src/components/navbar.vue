@@ -46,7 +46,6 @@ img {
   grid-column-end: 3;
   align-self: center;
   transition: all 0.5s ease-in-out;
-  padding: 10px;
   cursor: pointer;
 }
 .menuItems {
@@ -54,6 +53,7 @@ img {
   grid-column-end: 13;
   list-style: none;
   display: flex;
+  margin-top: 5%;
   justify-content: flex-end;
   align-items: center;
 }
@@ -61,9 +61,9 @@ img {
 .menuItems a {
   text-decoration: none;
   color: #edecda;
-  font-size: 24px;
+  font-size: 1.2em;
   font-weight: 600;
-  margin: 30px;
+  margin-right: 30px;
   transition: all 0.5s ease-in-out;
   text-transform: uppercase;
 }
@@ -78,10 +78,20 @@ img {
   padding-right: 20px;
 }
 
-@media only screen and (max-width: 720px) {
-  a {
-    font-size: 18px;
-    padding: 8px;
+@media only screen and (max-width: 675px) {
+  .menuItems a {
+    font-size: 0.7em;
+    margin-right: 10px;
+  }
+  img {
+    height: 80%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .menuItems a {
+    font-size: 0.6em;
+    margin-right: 0px;
   }
 }
 </style>
