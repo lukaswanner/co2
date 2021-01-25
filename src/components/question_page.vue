@@ -36,21 +36,21 @@
           </button>
         </div>
       </div>
+      <div class="arrows">
+            <i
+              id="backarrow"
+              class="fas fa-angle-double-right"
+              @click="shiftCards(false)"
+            ></i>
+            <i
+              id="arrow"
+              class="fas fa-angle-double-right"
+              @click="shiftCards(true)"
+            ></i>
+          </div>
     </div>
     <div class="graph_card">
       <BarChart class="graph" />
-    </div>
-    <div class="arrows">
-      <i
-        id="backarrow"
-        class="fas fa-angle-double-right"
-        @click="shiftCards(false)"
-      ></i>
-      <i
-        id="arrow"
-        class="fas fa-angle-double-right"
-        @click="shiftCards(true)"
-      ></i>
     </div>
   </div>
 </template>
@@ -167,9 +167,9 @@ export default {
       const currValue = this.selectedValue
       this.getData(event, qindex)
       const nextValue = this.selectedValue
-      if(currValue !== nextValue){
-        if(currValue > nextValue){
-        store.commit("substractFromCategory", {
+      if (currValue !== nextValue) {
+        if (currValue > nextValue) {
+          store.commit("substractFromCategory", {
             category: this.selectedCategory,
             value: currValue - nextValue,
           })
@@ -177,7 +177,7 @@ export default {
             category: "Your Co2",
             value: currValue - nextValue,
           })
-        }else{
+        } else {
           store.commit("addToCategory", {
             category: this.selectedCategory,
             value: nextValue - currValue,
@@ -363,10 +363,8 @@ export default {
 }
 
 .arrows {
-  grid-column-start: 3;
-  grid-column-end: 6;
-
-  grid-row: auto;
+  justify-self: flex-end;
+  align-self: center;
   display: flex;
   flex-flow: row;
   justify-content: space-evenly;
@@ -378,9 +376,9 @@ export default {
 
   justify-self: center;
   align-self: center;
-
+  margin-top: 10%;
+  margin-left: 50%;
   cursor: pointer;
-  margin-bottom: 5%;
 }
 
 #backarrow {
@@ -389,9 +387,10 @@ export default {
 
   justify-self: center;
   align-self: center;
+  margin-top: 10%;
+  margin-right: 50%;
   transform: rotate(180deg);
   cursor: pointer;
-  margin-bottom: 5%;
 }
 
 #arrow:active {

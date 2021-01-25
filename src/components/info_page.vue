@@ -123,4 +123,22 @@ span {
   font-size: 0.8em;
   opacity: 0.5;
 }
+
+@media only screen and (max-width: 660px) {
+  .info {
+  text-align: left;
+  width: 80%;
+  margin: 0;
+  margin-top: 5%;
+
+  color: #ebebeb;
+  font-size: 1em;
+  line-height: 2em;
+  word-spacing: 0.1em;
+
+  opacity: 1;
+
+  transition: 4s ease-in-out;
+}
+}
 </style>
