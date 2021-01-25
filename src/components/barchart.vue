@@ -2,7 +2,7 @@
   <div class="wrapper">
     <svg class="barchart" :width="width" :height="height">
       <g>
-        <g class="bars" fill="none" transform="translate(100, 0)">
+        <g class="bars" fill="none" transform="translate(100, 0) scale(0.65,1)">
           <rect
             v-for="(bar, index) in data"
             :fill="bar[3]"
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       height: "100%",
-      width: "90%",
+      width: "100%",
     }
   },
   mounted() {},

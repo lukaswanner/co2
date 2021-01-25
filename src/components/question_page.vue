@@ -412,10 +412,6 @@ export default {
     font-size: 1.5em;
   }
 
-  .questions {
-    transition: 1s ease-in-out;
-    font-size: 0.8em;
-  }
 }
 
 @media only screen and (max-width: 1668px) {
@@ -437,6 +433,12 @@ export default {
 }
 
 @media only screen and (max-width: 660px) {
+  .save_earth {
+    font-size: 5em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   .save_earth {
     font-size: 5em;
   }
