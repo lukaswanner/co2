@@ -35,7 +35,7 @@ export default {
 .navbar {
   position: fixed;
   width: 100vw;
-  height: 5vh;
+  height: 8vh;
   display: flex;
   flex-flow: row;
   background: transparent;
@@ -43,20 +43,25 @@ export default {
 }
 
 img {
-  align-self: center;
+  justify-self: flex-start;
+  align-self: flex-start;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 }
 .menuItems {
   width: 100%;
   list-style: none;
-  margin-top: 2%;
   margin-right: 1%;
   display: flex;
   justify-content: flex-end;
+  align-content: center;
 }
-
+.menuItems li {
+  margin:  auto 0;
+  display: block;
+}
 .menuItems a {
+    
   text-decoration: none;
   color: #edecda;
   font-size: 1.2em;
@@ -76,25 +81,28 @@ img {
   padding-right: 20px;
 }
 
-
 @media only screen and (max-width: 675px) {
-  .menuItems{
+  .menuItems {
     margin-right: 5%;
   }
   .menuItems a {
     font-size: 0.7em;
     margin-right: 10px;
   }
-  img{
+  img {
     width: 80%;
     height: 80%;
   }
 }
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 380px) {
   .menuItems a {
     font-size: 0.6em;
     margin-right: 0px;
+  }
+  img {
+    width: 40%;
+    height: 40%;
   }
 }
 </style>

@@ -57,7 +57,6 @@ body {
 
 #navbar {
   z-index: 1;
-  height: 10vh;
 }
 
 body::-webkit-scrollbar {
