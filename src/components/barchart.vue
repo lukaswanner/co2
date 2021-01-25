@@ -32,7 +32,7 @@
           <text
             v-for="(bar, index) in data"
             :key="index"
-            :x="'0%'"
+            :x="'1%'"
             :y="y(index) + barHeight / 2 + '%'"
             fill="#EBEBEB"
           >
@@ -65,12 +65,19 @@ export default {
         const color = store.state.co2list_bar[index].color
         list.push([value, "0", category, color])
       }
+      // let maxValue = 0
+      // list.forEach((item) => {
+      //   if (item[0] > maxValue) {
+      //     maxValue = item[0]
+      //   }
+      // })
       list.sort(function(a, b) {
         return b[0] - a[0]
       })
       for (let index = 0; index < list.length; index++) {
         let element = list[index]
         element[1] = parseInt((element[0] / list[0][0]) * 100)
+        // element[1] = parseInt((element[0] / maxValue) * 100)
       }
       return list
     },
@@ -97,7 +104,7 @@ export default {
 
 <style>
 .bar {
-  transition:4s ease, fill 0.2s;
+  transition: width 1s ease-in;
 }
 .wrapper {
   min-height: 30vh;

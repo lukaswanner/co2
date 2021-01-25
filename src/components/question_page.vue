@@ -6,13 +6,34 @@
       <h1>{{ this.question }}</h1>
       <div class="questions">
         <div class="call_to_action_q1">
-          <button class="button" @click="toggle($event, 1)">{{ a1 }}</button>
+          <button
+            class="button"
+            @click="toggle($event, 1)"
+            @mouseover="plusCo2($event, 1)"
+            @mouseleave="minusCo2()"
+          >
+            {{ a1 }}
+          </button>
         </div>
         <div class="call_to_action_q2">
-          <button class="button" @click="toggle($event, 2)">{{ a2 }}</button>
+          <button
+            class="button"
+            @click="toggle($event, 2)"
+            @mouseover="plusCo2($event, 2)"
+            @mouseleave="minusCo2()"
+          >
+            {{ a2 }}
+          </button>
         </div>
         <div class="call_to_action_q3">
-          <button class="button" @click="toggle($event, 3)">{{ a3 }}</button>
+          <button
+            class="button"
+            @click="toggle($event, 3)"
+            @mouseover="plusCo2($event, 3)"
+            @mouseleave="minusCo2()"
+          >
+            {{ a3 }}
+          </button>
         </div>
       </div>
     </div>
@@ -52,6 +73,7 @@ export default {
       selectedValue: 0,
       selectedCategory: "",
       index: 0,
+      buttonSet: false,
     }
   },
   mounted() {
@@ -86,7 +108,9 @@ export default {
       card.style.transition = "0.7s ease-in-out"
       card.style.opacity = 0
     },
+
     shiftForwards: function() {
+      this.buttonSet = false
       document
         .getElementsByClassName("question_card")[0]
         .removeEventListener("transitionend", this.shiftForwards)
@@ -96,16 +120,15 @@ export default {
       })
       document.getElementsByClassName("question_card")[0].style.opacity = 1
       // prettier-ignore
-      if (this.index + 1 <require("@/assets/questions/questions.json").questions.length) {
+      if (this.index + 1 < require("@/assets/questions/questions.json").questions.length) {
         this.index += 1
-      }else{
-          this.index = 0
       }
-      store.commit("addToCategory",{category: this.selectedCategory,value:this.selectedValue})
       this.selectedValue = 0
       this.selectedCategory = ""
     },
+
     shiftBackwards: function() {
+      this.buttonSet = false
       document
         .getElementsByClassName("question_card")[0]
         .removeEventListener("transitionend", this.shiftBackwards)
@@ -121,8 +144,11 @@ export default {
           this.index = 0
       }
     },
-    toggle: function(event, qindex) {
-      let data = require("@/assets/questions/questions.json").questions[this.index]
+
+    getData: function(event, qindex) {
+      let data = require("@/assets/questions/questions.json").questions[
+        this.index
+      ]
       switch (qindex) {
         case 1:
           this.selectedValue = data.A1[1]
@@ -135,11 +161,67 @@ export default {
           break
       }
       this.selectedCategory = data.Category
+    },
+
+    toggle: function(event, qindex) {
+      const currValue = this.selectedValue
+      this.getData(event, qindex)
+      const nextValue = this.selectedValue
+      if(currValue !== nextValue){
+        if(currValue > nextValue){
+        store.commit("substractFromCategory", {
+            category: this.selectedCategory,
+            value: currValue - nextValue,
+          })
+          store.commit("substractFromCategory", {
+            category: "Your Co2",
+            value: currValue - nextValue,
+          })
+        }else{
+          store.commit("addToCategory", {
+            category: this.selectedCategory,
+            value: nextValue - currValue,
+          })
+          store.commit("addToCategory", {
+            category: "Your Co2",
+            value: nextValue - currValue,
+          })
+        }
+      }
       let buttons = event.currentTarget.parentElement.parentElement.children
-      buttons.forEach((button) => {
-        button.firstChild.classList.remove("active")
-      })
+      for (let index = 0; index < buttons.length; index++) {
+        if (buttons[index].firstChild.classList.contains("active")) {
+          buttons[index].firstChild.classList.remove("active")
+        }
+      }
       event.currentTarget.classList.add("active")
+      this.buttonSet = true
+    },
+
+    plusCo2: function(event, qindex) {
+      if (!this.buttonSet) {
+        this.getData(event, qindex)
+        store.commit("addToCategory", {
+          category: this.selectedCategory,
+          value: this.selectedValue,
+        })
+        store.commit("addToCategory", {
+          category: "Your Co2",
+          value: this.selectedValue,
+        })
+      }
+    },
+    minusCo2: function() {
+      if (!this.buttonSet) {
+        store.commit("substractFromCategory", {
+          category: this.selectedCategory,
+          value: this.selectedValue,
+        })
+        store.commit("substractFromCategory", {
+          category: "Your Co2",
+          value: this.selectedValue,
+        })
+      }
     },
   },
   computed: {
@@ -287,12 +369,12 @@ export default {
   grid-row: auto;
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 #arrow {
   font-size: 3.5em;
-  color: #1a9414;
+  color: #b8283f;
 
   justify-self: center;
   align-self: center;

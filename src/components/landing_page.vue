@@ -11,7 +11,7 @@
       </p>
     </div>
     <div class="call_to_action">
-      <button class="button">save the planet</button>
+      <button class="button" onClick="document.getElementById('question').scrollIntoView();">save the planet</button>
     </div>
     <div class="background"></div>
   </div>

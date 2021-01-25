@@ -8,6 +8,13 @@
       "Category": "Consumption"
     },
     {
+      "Q": "How do you heat your home?",
+      "A1": ["Heat Pump",100],
+      "A2": ["Electricity",200],
+      "A3": ["Oil",300],
+      "Category": "Power"
+    },
+    {
       "Q": "How often do you fly short haul?",
       "A1": ["0",100],
       "A2": ["1-5",200],

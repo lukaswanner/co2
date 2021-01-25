@@ -104,28 +104,28 @@ const store = new Vuex.Store({
       
       {
         category:"Your Co2",
-        value:1000,
+        value:0,
         id:"1",
-        color:"blue",
+        color:"#0C1618",
       },
 
       {
         category:"Power",
-        value:700,
+        value:0,
         id:"2",
-        color:"#B39920",
+        color:"#D1AC00",
       },
       {
         category:"Transport",
-        value:300,
+        value:0,
         id:"3",
-        color:"red",
+        color:"#004643",
       },
       {
         category:"Consumption",
-        value:500,
+        value:0,
         id:"4",
-        color:"red",
+        color:"#219ebc",
       },
     ]
   },
@@ -143,6 +143,14 @@ const store = new Vuex.Store({
       list.forEach(item =>{
         if (item.category === payload.category){
           item.value += payload.value
+        }
+      })
+    },
+    substractFromCategory(state,payload) {
+      let list = state.co2list_bar
+      list.forEach(item =>{
+        if (item.category === payload.category){
+          item.value -= payload.value
         }
       })
     }
