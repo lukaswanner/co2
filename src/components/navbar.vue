@@ -34,7 +34,7 @@ export default {
 <style scoped>
 .navbar {
   position: fixed;
-  width: 100%;
+  width: 100vw;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   background: transparent;
