@@ -37,17 +37,17 @@
         </div>
       </div>
       <div class="arrows">
-            <i
-              id="backarrow"
-              class="fas fa-angle-double-right"
-              @click="shiftCards(false)"
-            ></i>
-            <i
-              id="arrow"
-              class="fas fa-angle-double-right"
-              @click="shiftCards(true)"
-            ></i>
-          </div>
+        <i
+          id="backarrow"
+          class="fas fa-angle-double-right"
+          @click="shiftCards(false)"
+        ></i>
+        <i
+          id="arrow"
+          class="fas fa-angle-double-right"
+          @click="shiftCards(true)"
+        ></i>
+      </div>
     </div>
     <div class="graph_card">
       <BarChart class="graph" />
@@ -403,34 +403,15 @@ export default {
 
 @media only screen and (max-width: 1300px) {
   #section-container {
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "save_earth"
-      "questions"
-      "arrow"
-      "graph";
+    display: flex;
+    flex-flow: column;
   }
-
-  .save_earth {
-    grid-area: save_earth;
-  }
-
-  .question_card {
-    grid-area: questions;
-  }
-
-  .graph_card {
-    grid-area: graph;
-  }
-
-  .arrows {
-    grid-area: arrow;
-    justify-content: center;
-  }
-
-  .arrows > * {
-    padding-left: 5%;
+  .car {
+    max-height: 10%;
+    max-width: 20%;
+    justify-self: flex-start;
+    align-self: center;
+    margin-top: 15%;
   }
 }
 
