@@ -35,6 +35,7 @@ export default {
 .navbar {
   position: fixed;
   width: 100vw;
+  height: 5vh;
   display: flex;
   flex-flow: row;
   background: transparent;
@@ -50,9 +51,9 @@ img {
   width: 100%;
   list-style: none;
   margin-top: 2%;
+  margin-right: 1%;
   display: flex;
   justify-content: flex-end;
-  align-items: flex-start;
 }
 
 .menuItems a {
@@ -75,12 +76,17 @@ img {
   padding-right: 20px;
 }
 
+
 @media only screen and (max-width: 675px) {
+  .menuItems{
+    margin-right: 5%;
+  }
   .menuItems a {
     font-size: 0.7em;
     margin-right: 10px;
   }
-  img {
+  img{
+    width: 80%;
     height: 80%;
   }
 }
