@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.4742bf80aa28275cd9592db826b3a847.js"
+  "/precache-manifest.95f3418f8796af4d1aef0fbad3333fd4.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "co2"});
