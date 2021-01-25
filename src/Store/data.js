@@ -146,7 +146,9 @@ const store = new Vuex.Store({
           item.value += payload.value
         }
       })
+      state.co2list_bar[1].value += payload.value
       state.steps.push({ category: payload.category, value: payload.value })
+      state.steps.push({ category: "Your Co2", value: payload.value })
       console.log(state.steps)
     },
     substractFromCategory(state, payload) {
@@ -156,19 +158,46 @@ const store = new Vuex.Store({
           item.value -= payload.value
         }
       })
+      state.co2list_bar[1].value -= payload.value
+      state.steps.pop()
       state.steps.pop()
     },
-    goBack(state) {
-      const b1 = state.steps.pop()
-      const b2 = state.steps.pop()
+    add(state, payload) {
       let list = state.co2list_bar
       list.forEach((item) => {
-        if (item.category === b1.category) {
-          item.value -= b1.value
-        } else if (item.category === b2.category) {
-          item.value -= b2.value
+        if (item.category === payload.category) {
+          item.value += payload.value
         }
       })
+      state.co2list_bar[1].value += payload.value
+      state.steps[state.steps.length-1].value += payload.value
+      state.steps[state.steps.length-2].value += payload.value
+      
+    },
+    substract(state, payload) {
+      let list = state.co2list_bar
+      list.forEach((item) => {
+        if (item.category === payload.category) {
+          item.value -= payload.value
+        }
+      })
+      state.co2list_bar[1].value -= payload.value
+      state.steps[state.steps.length-1].value -= payload.value
+      state.steps[state.steps.length-2].value -= payload.value
+    },
+    goBack(state) {
+      if (state.steps.length >= 2) {
+        const b1 = state.steps.pop()
+        const b2 = state.steps.pop()
+        let list = state.co2list_bar
+        list.forEach((item) => {
+          if (item.category === b1.category) {
+            item.value -= b1.value
+          } else if (item.category === b2.category) {
+            item.value -= b2.value
+          }
+        })
+      }
     },
   },
 })

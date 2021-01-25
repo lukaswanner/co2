@@ -173,21 +173,13 @@ export default {
       const nextValue = this.selectedValue
       if (currValue !== nextValue) {
         if (currValue > nextValue) {
-          store.commit("substractFromCategory", {
+          store.commit("substract", {
             category: this.selectedCategory,
-            value: currValue - nextValue,
-          })
-          store.commit("substractFromCategory", {
-            category: "Your Co2",
             value: currValue - nextValue,
           })
         } else {
-          store.commit("addToCategory", {
+          store.commit("add", {
             category: this.selectedCategory,
-            value: nextValue - currValue,
-          })
-          store.commit("addToCategory", {
-            category: "Your Co2",
             value: nextValue - currValue,
           })
         }
@@ -209,20 +201,12 @@ export default {
           category: this.selectedCategory,
           value: this.selectedValue,
         })
-        store.commit("addToCategory", {
-          category: "Your Co2",
-          value: this.selectedValue,
-        })
       }
     },
     minusCo2: function() {
       if (!this.buttonSet) {
         store.commit("substractFromCategory", {
           category: this.selectedCategory,
-          value: this.selectedValue,
-        })
-        store.commit("substractFromCategory", {
-          category: "Your Co2",
           value: this.selectedValue,
         })
       }

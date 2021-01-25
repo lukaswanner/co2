@@ -35,22 +35,19 @@ export default {
 .navbar {
   position: fixed;
   width: 100vw;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  display: flex;
+  flex-flow: row;
   background: transparent;
   transition: 0.5s;
 }
 
 img {
-  grid-column-start: 2;
-  grid-column-end: 3;
   align-self: center;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 }
 .menuItems {
-  grid-column-start: 8;
-  grid-column-end: 13;
+  width: 100%;
   list-style: none;
   display: flex;
   margin-top: 5%;

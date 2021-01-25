@@ -121,6 +121,7 @@ text {
 }
 .y-grid-category {
   text-anchor: start;
+  transition: 1s ease-in;
 }
 
 line {
