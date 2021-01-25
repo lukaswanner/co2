@@ -69,6 +69,8 @@ export default {
 }
 
 .information {
+  padding: 0;
+  margin: 0;
   grid-column: 2/5;
   grid-row: 9/10;
 }

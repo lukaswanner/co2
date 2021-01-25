@@ -43,12 +43,15 @@ export default {
 }
 
 img {
+  padding-left: 8%;
+  margin: auto 0;
   justify-self: flex-start;
   align-self: flex-start;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
 }
 .menuItems {
+  padding:0;
   width: 100%;
   list-style: none;
   margin-right: 1%;
@@ -60,8 +63,7 @@ img {
   margin:  auto 0;
   display: block;
 }
-.menuItems a {
-    
+.menuItems a { 
   text-decoration: none;
   color: #edecda;
   font-size: 1.2em;
