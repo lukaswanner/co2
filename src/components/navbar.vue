@@ -103,8 +103,8 @@ img {
     margin-right: 0px;
   }
   img {
-    width: 40%;
-    height: 40%;
+    width: 50%;
+    height: 50%;
   }
 }
 </style>

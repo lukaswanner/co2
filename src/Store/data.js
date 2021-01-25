@@ -106,7 +106,7 @@ const store = new Vuex.Store({
         category: "Your Co2",
         value: 0,
         id: "1",
-        color: "#0C1618",
+        color: "#b8283f",
       },
 
       {
