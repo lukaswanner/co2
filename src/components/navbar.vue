@@ -49,10 +49,10 @@ img {
 .menuItems {
   width: 100%;
   list-style: none;
+  margin-top: 2%;
   display: flex;
-  margin-top: 5%;
   justify-content: flex-end;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .menuItems a {
