@@ -100,13 +100,16 @@ export default {
   methods: {
     shiftCards: function(bool) {
       let card = document.getElementsByClassName("question_card")[0]
-      if (bool) {
+      // prettier-ignore
+      if (bool && this.index + 1 !== require("@/assets/questions/questions.json").questions.length) {
+        card.style.transition = "0.7s ease-in-out"
+        card.style.opacity = 0
         card.addEventListener("transitionend", this.shiftForwards)
-      } else {
+      } else if(!bool && this.index > 0) {
+        card.style.transition = "0.7s ease-in-out"
+        card.style.opacity = 0
         card.addEventListener("transitionend", this.shiftBackwards)
       }
-      card.style.transition = "0.7s ease-in-out"
-      card.style.opacity = 0
     },
 
     shiftForwards: function() {
@@ -137,6 +140,7 @@ export default {
         button.firstChild.classList.remove("active")
       })
       document.getElementsByClassName("question_card")[0].style.opacity = 1
+      store.commit("goBack")
       // prettier-ignore
       if (this.index - 1  >= 0) {
         this.index -= 1
@@ -401,6 +405,9 @@ export default {
   transform: rotate(180deg) scale(0.9, 0.9);
 }
 
+.disabled {
+  pointer-events: none;
+}
 @media only screen and (max-width: 1300px) {
   #section-container {
     display: flex;

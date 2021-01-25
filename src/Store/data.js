@@ -94,40 +94,41 @@ const store = new Vuex.Store({
         category: "fill",
       },
     ],
-    co2list_bar:[
+    co2list_bar: [
       {
-        category:"2050 Goal",
-        value:1500,
-        id:"1",
+        category: "2050 Goal",
+        value: 1500,
+        id: "1",
         color: "#27B320",
-      },
-      
-      {
-        category:"Your Co2",
-        value:0,
-        id:"1",
-        color:"#0C1618",
       },
 
       {
-        category:"Power",
-        value:0,
-        id:"2",
-        color:"#D1AC00",
+        category: "Your Co2",
+        value: 0,
+        id: "1",
+        color: "#0C1618",
+      },
+
+      {
+        category: "Power",
+        value: 0,
+        id: "2",
+        color: "#D1AC00",
       },
       {
-        category:"Transport",
-        value:0,
-        id:"3",
-        color:"#004643",
+        category: "Transport",
+        value: 0,
+        id: "3",
+        color: "#004643",
       },
       {
-        category:"Consumption",
-        value:0,
-        id:"4",
-        color:"#219ebc",
+        category: "Consumption",
+        value: 0,
+        id: "4",
+        color: "#219ebc",
       },
-    ]
+    ],
+    steps: [],
   },
   mutations: {
     setCo2List(state, list) {
@@ -138,22 +139,37 @@ const store = new Vuex.Store({
       state.co2list = [...state.co2list_copy]
       state.detailed = false
     },
-    addToCategory(state,payload) {
+    addToCategory(state, payload) {
       let list = state.co2list_bar
-      list.forEach(item =>{
-        if (item.category === payload.category){
+      list.forEach((item) => {
+        if (item.category === payload.category) {
           item.value += payload.value
         }
       })
+      state.steps.push({ category: payload.category, value: payload.value })
+      console.log(state.steps)
     },
-    substractFromCategory(state,payload) {
+    substractFromCategory(state, payload) {
       let list = state.co2list_bar
-      list.forEach(item =>{
-        if (item.category === payload.category){
+      list.forEach((item) => {
+        if (item.category === payload.category) {
           item.value -= payload.value
         }
       })
-    }
+      state.steps.pop()
+    },
+    goBack(state) {
+      const b1 = state.steps.pop()
+      const b2 = state.steps.pop()
+      let list = state.co2list_bar
+      list.forEach((item) => {
+        if (item.category === b1.category) {
+          item.value -= b1.value
+        } else if (item.category === b2.category) {
+          item.value -= b2.value
+        }
+      })
+    },
   },
 })
 
